@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
+body {
+  background-color: black;
+  text-align: center;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+<p>Edit the code in the window to the left, and click "Run" to view the result.</p>
+
+
+<script>
+var friendList = [
+  {
+  "name":"Fred",
+  "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+  "scores":[
+      5,
+      1,
+      4,
+      2,
+      5,
+      1,
+      2,
+      5,
+      4,
+      1
+    ]
+  },
+  {
+  "name":"Helen",
+  "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+  "scores":[
+      5,
+      1,
+      1,
+      3,
+      5,
+      1,
+      5,
+      5,
+      4,
+      4
+    ]
+  },
+  {
+      "name":"Mary",
+  "photo":"https://media.05/064/1bd/3435aa3.jpg",
+  "scores":[
+      4,
+      2,
+      4,
+      3,
+      5,
+      1,
+      1,
+      5,
+      5,
+      2
+    ]
+  }
+];
+
+var theUser = {
+  "name":"Ted",
+  "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+  "scores":[
+      4,
+      1,
+      4,
+      4,
+      5,
+      1,
+      2,
+      5,
+      4,
+      1
+    ]
+}
+
+
+var compatibility = [];
+
+
+for (var i = 0; i < friendList.length; i++ ) {
+  var obj = friendList[i];
+  var name = obj.name
+  //console.log("Name: " + name)
+
+  var overallScore = 0
+
+  var answers = obj.scores
+  for (var x = 0; x < answers.length; x++) {
+    var friendAnswer = answers[x]
+    //console.log("answer [" + x + "] --> " + answers[x])
+
+    var userAnswer = theUser.scores[x]
+    //console.log("  User Answer [" + x + "] --> " + theUser.scores[x])
+    
+    theDiff = Math.abs(friendAnswer - userAnswer)
+    //console.log("The Difference: " + theDiff )
+
+
+    console.log(name + " ans[" + x + "] " + friendAnswer + " u_ans: " + userAnswer + " diff: " + theDiff )
+
+    overallScore += theDiff
+  }
+  console.log("overall Score: " + overallScore)
+  console.log("---------------------------------")
+
+  compatibility.push([name, overallScore]);
+
+}
+
+// sort the array
+
+compatibility.sort(function(a, b) {
+  return a[1] - b[1]
+})
+
+for (var i = 0; i < compatibility.length; i++) {
+  for (var j = 0; j < compatibility[i].length; j++) {
+    console.log('[' + i + ',' + j + '] = ' + compatibility[i][j])
+  }
+}
+
+
+/*
+THIS IS GOOD FOR OBJECTS (but we're using an array so we can sort it)
+
+var compatibility = {};
+compatibility[name] = overallScore;
+
+Object.keys(compatibility).forEach(function(item) {
+  console.log(item)   // the key
+  console.log(compatibility[item])  // the value
+})
+*/
+
+
+
+</script>
+</body>
+</html>
