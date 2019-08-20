@@ -25,7 +25,7 @@ body {
 var friendList = [
   {
   "name":"Fred",
-  "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+  "photo":"https://media.licdn.com/fred.jpg",
   "scores":[
       5,
       1,
@@ -41,7 +41,7 @@ var friendList = [
   },
   {
   "name":"Helen",
-  "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+  "photo":"https://media.licdn.com/helen.jpg",
   "scores":[
       5,
       1,
@@ -56,8 +56,8 @@ var friendList = [
     ]
   },
   {
-      "name":"Mary",
-  "photo":"https://media.05/064/1bd/3435aa3.jpg",
+  "name":"Mary",
+  "photo":"https://pinterest/mary.jpg",
   "scores":[
       4,
       2,
@@ -136,6 +136,17 @@ for (var i = 0; i < compatibility.length; i++) {
   }
 }
 
+var bestMatchName = compatibility[0][0]
+console.log("Best Match: " + bestMatchName)
+
+var bestMatch = friendList.filter(function(x) { 
+  return x.name == bestMatchName;
+});
+
+console.log("Photo URL: " + bestMatch[0].photo)
+
+
+
 
 /*
 THIS IS GOOD FOR OBJECTS (but we're using an array so we can sort it)
@@ -148,7 +159,6 @@ Object.keys(compatibility).forEach(function(item) {
   console.log(compatibility[item])  // the value
 })
 */
-
 
 
 </script>
