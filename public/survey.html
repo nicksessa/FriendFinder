@@ -122,22 +122,21 @@
 //*****************************************************************************
 
 $(".submit").on("click", function(event) {
-    event.preventDefault();
+    event.preventDefault();  // what does this do?
 
-    // Here we grab the form elements
+    // Get the form elements
+
     var newMatch = {
       userName: $("#uname").val().trim(),
       userPhoto: $("#photo").val().trim(),
-      q1: $("#q1").val().trim(),
-      q2: $("#q2").val().trim(),
-      q3: $("#q3").val().trim(),
-      q4: $("#q4").val().trim(),
-      q5: $("#q5").val().trim(),
-      q6: $("#q6").val().trim(),
-      q7: $("#q7").val().trim(),
-      q8: $("#q8").val().trim(),
-      q9: $("#q9").val().trim(),
-      q10: $("#q10").val().trim()
+      scores: [
+        $('input[name=q1]:checked').val(),
+        $('input[name=q2]:checked').val(),
+        $('input[name=q3]:checked').val(),
+        $('input[name=q4]:checked').val(),
+        $('input[name=q5]:checked').val()
+      ]
+
     };
 
     console.log(newMatch);
@@ -145,7 +144,7 @@ $(".submit").on("click", function(event) {
     // This line is the magic. It"s very similar to the standard ajax function we used.
     // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
     // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-    // depending on if a tables is available or not.
+    // depending on if a table is available or not.
 
     $.post("/api/friends", newMatch,
       function(data) {
@@ -154,17 +153,24 @@ $(".submit").on("click", function(event) {
 
         // Clear the form when submitting
         $("#uname").val("");
-        $("#photo").val("")
-        $("#q1").val("");
-        $("#q2").val("");
-        $("#q3").val("");
-        $("#q4").val("");
-        $("#q5").val("");
-        $("#q6").val("");
-        $("#q7").val("");
-        $("#q8").val("");
-        $("#q9").val("");
-        $("#q10").val("");
+        $("#photo").val("");
+
+        $('#q1 input[type="radio":checked]').each(function(){
+          $(this).checked = false;
+        });
+        $('#q2 input[type="radio":checked]').each(function(){
+          $(this).checked = false;
+        });
+        $('#q3 input[type="radio":checked]').each(function(){
+          $(this).checked = false;
+        });
+        $('#q4 input[type="radio":checked]').each(function(){
+          $(this).checked = false;
+        });
+        $('#q5 input[type="radio":checked]').each(function(){
+          $(this).checked = false;
+        });
+
       });
 
   });
