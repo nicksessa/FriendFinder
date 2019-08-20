@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Friend Finder Survey Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -88,6 +88,14 @@
     <hr>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+
+
+  <footer class="footer">
+    <div class="container">
+      <p><a href="/api/friends">API Friends Link</a> | <a href="https://github.com/nicksessa/FriendFinder">GitHub Repo</a>
+    </div>
+  </footer>
+  
 </div>
 
 <script>
@@ -109,6 +117,64 @@
     });
   }, false);
 })();
+
+
+//*****************************************************************************
+
+$(".submit").on("click", function(event) {
+    event.preventDefault();
+
+    // Here we grab the form elements
+    var newMatch = {
+      userName: $("#uname").val().trim(),
+      userPhoto: $("#photo").val().trim(),
+      q1: $("#q1").val().trim(),
+      q2: $("#q2").val().trim(),
+      q3: $("#q3").val().trim(),
+      q4: $("#q4").val().trim(),
+      q5: $("#q5").val().trim(),
+      q6: $("#q6").val().trim(),
+      q7: $("#q7").val().trim(),
+      q8: $("#q8").val().trim(),
+      q9: $("#q9").val().trim(),
+      q10: $("#q10").val().trim()
+    };
+
+    console.log(newMatch);
+
+    // This line is the magic. It"s very similar to the standard ajax function we used.
+    // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
+    // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
+    // depending on if a tables is available or not.
+
+    $.post("/api/friends", newMatch,
+      function(data) {
+
+
+
+        // Clear the form when submitting
+        $("#uname").val("");
+        $("#photo").val("")
+        $("#q1").val("");
+        $("#q2").val("");
+        $("#q3").val("");
+        $("#q4").val("");
+        $("#q5").val("");
+        $("#q6").val("");
+        $("#q7").val("");
+        $("#q8").val("");
+        $("#q9").val("");
+        $("#q10").val("");
+      });
+
+  });
+
+
+
+
+
+//*****************************************************************************
+
 </script>
 
 </body>

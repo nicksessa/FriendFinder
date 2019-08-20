@@ -62,7 +62,7 @@ var friendList = [
             4,
             1
           ]
-      }
-
-      
+      }   
 ]
+
+module.exports = friendList;
