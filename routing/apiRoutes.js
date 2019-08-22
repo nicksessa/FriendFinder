@@ -1,5 +1,5 @@
 
-var friendData = require("../app/data/friends.js")
+var friendList = require("../app/data/friends.js")
 
 // ===============================================================================
 // ROUTING
@@ -14,7 +14,7 @@ module.exports = function (app) {
 
     // Displays all friends
     app.get("/api/friends", function (req, res) {
-        return res.json(friendData);
+        return res.json(friendList);
     });
 
     // API POST Requests
@@ -25,73 +25,66 @@ module.exports = function (app) {
     app.post("/api/friends", function (req, res) {
         // This function receives an array, which is the results of the survey.
 
-        console.log("Name passed: " + req.userName)
-        console.log("link to photo: " + req.userPhoto)
+        //console.log("Name passed: " + req.userName)
+        //console.log("link to photo: " + req.userPhoto)
+console.log("made it to the api")
+console.log("req: " + req)
+var user = req.body;
 
+        var compatibility = [];
 
+        for (var i = 0; i < friendList.length; i++) {
+            var obj = friendList[i];
+            var name = obj.name
+            //console.log("Name: " + name)
 
+            var overallScore = 0
 
-var compatibility = [];
+            var answers = obj.scores
+            for (var x = 0; x < answers.length; x++) {
+                var friendAnswer = answers[x]
+                //console.log("answer [" + x + "] --> " + answers[x])
 
+                var userAnswer = user.scores[x]
+                //console.log("  User Answer [" + x + "] --> " + user.scores[x])
 
-for (var i = 0; i < friendList.length; i++ ) {
-  var obj = friendList[i];
-  var name = obj.name
-  //console.log("Name: " + name)
+                theDiff = Math.abs(friendAnswer - userAnswer)
+                //console.log("The Difference: " + theDiff )
 
-  var overallScore = 0
+                //console.log(name + " ans[" + x + "] " + friendAnswer + " u_ans: " + userAnswer + " diff: " + theDiff)
 
-  var answers = obj.scores
-  for (var x = 0; x < answers.length; x++) {
-    var friendAnswer = answers[x]
-    //console.log("answer [" + x + "] --> " + answers[x])
+                overallScore += theDiff
+            }
+            //console.log("overall Score: " + overallScore)
+            //console.log("---------------------------------")
 
-    var userAnswer = req.scores[x]
-    //console.log("  User Answer [" + x + "] --> " + req.scores[x])
-    
-    theDiff = Math.abs(friendAnswer - userAnswer)
-    //console.log("The Difference: " + theDiff )
+            compatibility.push([name, overallScore]);
 
+        }
 
-    console.log(name + " ans[" + x + "] " + friendAnswer + " u_ans: " + userAnswer + " diff: " + theDiff )
+        // sort the array
 
-    overallScore += theDiff
-  }
-  console.log("overall Score: " + overallScore)
-  console.log("---------------------------------")
+        compatibility.sort(function (a, b) {
+            return a[1] - b[1]
+        })
 
-  compatibility.push([name, overallScore]);
+        for (var i = 0; i < compatibility.length; i++) {
+            for (var j = 0; j < compatibility[i].length; j++) {
+                console.log('[' + i + ',' + j + '] = ' + compatibility[i][j])
+            }
+        }
 
-}
+        var bestMatchName = compatibility[0][0]
+        console.log("Best Match: " + bestMatchName)
 
-// sort the array
+        var bestMatch = friendList.filter(function (x) {
+            return x.name == bestMatchName;
+        });
 
-compatibility.sort(function(a, b) {
-  return a[1] - b[1]
-})
+        console.log("Photo URL: " + bestMatch[0].photo)
+        console.log("best match object: " + bestMatch)
 
-for (var i = 0; i < compatibility.length; i++) {
-  for (var j = 0; j < compatibility[i].length; j++) {
-    console.log('[' + i + ',' + j + '] = ' + compatibility[i][j])
-  }
-}
-
-var bestMatchName = compatibility[0][0]
-console.log("Best Match: " + bestMatchName)
-
-var bestMatch = friendList.filter(function(x) { 
-  return x.name == bestMatchName;
-});
-
-console.log("Photo URL: " + bestMatch[0].photo)
-
-
-
-
-
-
-
-
+        res.json(bestMatch)
         //friendList.push(req.body);   There is no need to push anything to the friendList array.
         //  need this?  res.json(false);  // we could return true if a match is found or false if not
 
