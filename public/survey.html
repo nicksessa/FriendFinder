@@ -11,7 +11,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-
+<style>
+    #bestFriendPhoto {
+      max-width: 100%;
+      max-height: 350px;
+    }
+</style>
 <body>
 
   <div class="container">
@@ -35,12 +40,12 @@
       <h4>Question 1</h4>
       <div class="form-check">
         <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="q1" required value="1" > Option 1
+          <input class="form-check-input" type="radio" name="q1" required value="1"> Option 1
         </label>
       </div>
       <div class="form-check">
         <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="q1" required value="2" > Option 2
+          <input class="form-check-input" type="radio" name="q1" required value="2"> Option 2
         </label>
       </div>
       <div class="form-check">
@@ -376,9 +381,9 @@
 
 
     //*****************************************************************************
-$("#closeButton").on("click", function(){
-  location.reload();
-});
+    $("#closeButton").on("click", function () {
+      location.reload();
+    });
     $("#submit").on("click", function (event) {
       console.log("button clicked!")
       event.preventDefault();  // what does this do?
@@ -424,7 +429,7 @@ $("#closeButton").on("click", function(){
         $("#uname").val("");
         $("#photo").val("");
 
-        $('input:radio').prop("checked", false );;
+        $('input:radio').prop("checked", false);;
 
         //location.reload();
 
