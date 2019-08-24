@@ -4,7 +4,7 @@
 
 "FriendFinder" is a full-stack application that will take in results from users' surveys, then compare their answers with those from other users. The app will then display the name and picture of the user with the best overall match.
 
-Express handles the routing and it is also deployed on Heroku here: `link to be added`
+Express handles the routing and it is also deployed on Heroku here: https://fierce-savannah-90675.herokuapp.com/
 
 
 ### Instructions
