@@ -22,7 +22,7 @@
   <div class="container">
     <h2>Survey Questions</h2>
     <hr>
-    <form action="/action_page.php" class="needs-validation" novalidate>
+    <form id="theForm" action="" class="needs-validation" novalidate>
       <div class="form-group">
         <h3>About You</h3>
         <label for="uname">Your Name</label>
@@ -384,7 +384,20 @@
     $("#closeButton").on("click", function () {
       location.reload();
     });
-    $("#submit").on("click", function (event) {
+    
+    $("#theForm").submit(function(event) {
+  if ($("#theForm").hasClass("was-validated")) {
+    //alert( "Handler for .submit() called." );
+    //event.preventDefault();
+    doIt()
+    event.preventDefault();
+  } else {
+    alert("the form is incomplete")
+  }
+})
+      
+      
+    function doIt() {
       console.log("button clicked!")
       event.preventDefault();  // what does this do?
 
@@ -467,7 +480,7 @@
         */
       });
 
-    });
+    };
 
 //*****************************************************************************
 
