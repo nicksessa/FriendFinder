@@ -374,6 +374,13 @@
               event.stopPropagation();
             }
             form.classList.add('was-validated');
+            if (form.checkValidity()) {
+              submitForm(form)
+                //.then(function(data) {
+                clearForm(form)
+                //alert(data.message)
+              //});
+            }
           }, false);
         });
       }, false);
@@ -384,7 +391,7 @@
     $("#closeButton").on("click", function () {
       location.reload();
     });
-    
+    /*
     $("#theForm").submit(function(event) {
   if ($("#theForm").hasClass("was-validated")) {
     //alert( "Handler for .submit() called." );
@@ -394,10 +401,13 @@
   } else {
     alert("the form is incomplete")
   }
-})
+})*/
       
+    function clearForm(form) {
+      form.classList.remove("was-validated")
+    }
       
-    function doIt() {
+    function submitForm(form) {
       console.log("button clicked!")
       event.preventDefault();  // what does this do?
 
