@@ -16,10 +16,55 @@
       max-width: 100%;
       max-height: 350px;
     }
+
+#scrollTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  /*font-size: 12px;*/
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  /*padding: 15px;*/
+  border-radius: 4px;
+}
+
+#scrollTopBtn:hover {
+  background-color: #555;
+}
+    
+#scrollBottomBtn {
+  display: block;
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  z-index: 99;
+  /*font-size: 12px;*/
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  /*padding: 15px;*/
+  border-radius: 4px;
+}
+
+#scrollBottomBtn:hover {
+  background-color: #555;
+}
 </style>
 <body>
 
+
   <div class="container">
+
+  <button class="btn btn-md" onclick="topFunction()" id="scrollTopBtn" title="Go to top">Top</button>
+  <button class="btn btn-md" onclick="bottomFunction()" id="scrollBottomBtn" title="Go to top">Bottom</button>
+
     <h2>Survey Questions</h2>
     <hr>
     <form id="theForm" action="" class="needs-validation" novalidate>
@@ -37,7 +82,7 @@
         <div class="invalid-feedback">Please fill out this field.</div>
       </div>
       <hr>
-      <h4>Old movies are awesome.</h4>
+      <h4>1) Old movies are awesome.</h4>
       <div class="form-check">
         <label class="form-check-label">
           <input class="form-check-input" type="radio" name="q1" required value="1"> 1 (Strongly Disagree)
@@ -65,7 +110,8 @@
           <div class="invalid-feedback">You must select an option.</div>
         </label>
       </div>
-      <h4>The Rat Pack was amazing.</h4>
+      <br>
+      <h4>2) The Rat Pack was amazing.</h4>
       <div class="form-check">
         <label class="form-check-label">
           <input class="form-check-input" type="radio" name="q2" required value="1"> 1 (Strongly Disagree)
@@ -93,7 +139,8 @@
           <div class="invalid-feedback">You must select an option</div>
         </label>
       </div>
-      <h4>You prefer to walk around all day in public in your pajamas.</h4>
+      <br>
+      <h4>3) You prefer to walk around all day in public in your pajamas.</h4>
       <div class="form-check">
         <label class="form-check-label">
           <input class="form-check-input" type="radio" name="q3" required value="1"> 1 (Strongly Disagree)
@@ -121,8 +168,8 @@
           <div class="invalid-feedback">You must select an option</div>
         </label>
       </div>
-
-      <h4>Any time of the day is the right time for a Martini.</h4>
+      <br>
+      <h4>4) Any time of the day is the right time for a Martini.</h4>
       <div class="form-check">
         <label class="form-check-label">
           <input class="form-check-input" type="radio" name="q4" required value="1"> 1 (Strongly Disagree)
@@ -150,8 +197,8 @@
           <div class="invalid-feedback">You must select an option</div>
         </label>
       </div>
-
-      <h4>Popular "music" today can't hold a candle to music of the past.</h4>
+      <br>
+      <h4>5) Popular "music" today can't hold a candle to music of the past.</h4>
       <div class="form-check">
         <label class="form-check-label">
           <input class="form-check-input" type="radio" name="q5" required value="1"> 1 (Strongly Disagree)
@@ -179,8 +226,8 @@
           <div class="invalid-feedback">You must select an option</div>
         </label>
       </div>
-
-      <h4>Men are men and dames are dames.</h4>
+      <br>
+      <h4>6) Men are men and dames are dames.</h4>
       <div class="form-check">
         <label class="form-check-label">
           <input class="form-check-input" type="radio" name="q6" required value="1"> 1 (Strongly Disagree)
@@ -208,8 +255,8 @@
           <div class="invalid-feedback">You must select an option</div>
         </label>
       </div>
-
-      <h4>The "man bun" today is akin to the mullet of the 80's... only worse.</h4>
+      <br>
+      <h4>7) The "man bun" today is akin to the mullet of the 80's... only worse.</h4>
       <div class="form-check">
         <label class="form-check-label">
           <input class="form-check-input" type="radio" name="q7" required value="1"> 1 (Strongly Disagree)
@@ -237,8 +284,8 @@
           <div class="invalid-feedback">You must select an option</div>
         </label>
       </div>
-
-      <h4>An old fashioned "safety razor" is way better than any plastic multi-blade razor on the market today.</h4>
+      <br>
+      <h4>8) An old fashioned "safety razor" is way better than any plastic multi-blade razor on the market today.</h4>
       <div class="form-check">
         <label class="form-check-label">
           <input class="form-check-input" type="radio" name="q8" required value="1"> 1 (Strongly Disagree)
@@ -266,8 +313,8 @@
           <div class="invalid-feedback">You must select an option</div>
         </label>
       </div>
-
-      <h4>Badges, we don't need no stinkin badges!</h4>
+      <br>
+      <h4>9) Badges, we don't need no stinkin badges!</h4>
       <div class="form-check">
         <label class="form-check-label">
           <input class="form-check-input" type="radio" name="q9" required value="1"> 1 (Strongly Disagree)
@@ -295,8 +342,8 @@
           <div class="invalid-feedback">You must select an option</div>
         </label>
       </div>
-
-      <h4>Of All The Gin Joints In All The Towns In All The World, She Walks Into Mine.</h4>
+      <br>
+      <h4>10) Of All The Gin Joints In All The Towns In All The World, She Walks Into Mine.</h4>
       <div class="form-check">
         <label class="form-check-label">
           <input class="form-check-input" type="radio" name="q10" required value="1"> 1 (Strongly Disagree)
@@ -333,8 +380,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h3 class="modal-title">Your New Best Friend</h1>
+              <h3 class="modal-title">Meet Your New Best Friend!</h1>
             </div>
             <div class="modal-body">
               <h2 id="bestFriend"></h2>
@@ -358,7 +404,7 @@
     </footer>
 
   </div>
-
+<!------------------------------------------------------------------------------->
   <script>
     // Disable form submissions if there are invalid fields
     (function () {
@@ -493,6 +539,35 @@
     };
 
 //*****************************************************************************
+
+window.onload = function() {scrollFunction()};
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("scrollTopBtn").style.display = "block";
+        document.getElementById("scrollBottomBtn").style.display = "none";
+  } else {
+    document.getElementById("scrollTopBtn").style.display = "none";
+ document.getElementById("scrollBottomBtn").style.display = "block";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  //document.body.scrollTop = 0;
+  //document.documentElement.scrollTop = 0;
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+}
+
+function bottomFunction() {
+ $('html, body').animate({scrollTop:$(document).height()}, 'slow'); 
+}
+
+
+//*****************************************************************************
+
 
   </script>
 </body>
