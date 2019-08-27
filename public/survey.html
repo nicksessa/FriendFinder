@@ -21,7 +21,7 @@
   display: none;
   position: fixed;
   bottom: 20px;
-  right: 30px;
+  left: 15px;
   z-index: 99;
   /*font-size: 12px;*/
   border: none;
@@ -38,10 +38,10 @@
 }
     
 #scrollBottomBtn {
-  display: block;
+  display: none;
   position: fixed;
   top: 20px;
-  right: 30px;
+  left: 15px;
   z-index: 99;
   /*font-size: 12px;*/
   border: none;
@@ -56,6 +56,12 @@
 #scrollBottomBtn:hover {
   background-color: #555;
 }
+
+.container {
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
 </style>
 <body>
 
@@ -398,6 +404,7 @@
 
     <footer class="footer">
       <div class="container">
+        <br>
         <p><a href="/">Home</a> | <a href="/api/friends">API Friends Link</a> | <a href="https://github.com/nicksessa/FriendFinder">GitHub
             Repo</a>
       </div>
@@ -545,12 +552,18 @@ window.onload = function() {scrollFunction()};
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
+  var pageHeight = $("html, body").height()
+  if (document.body.scrollTop > pageHeight -800 || document.documentElement.scrollTop > pageHeight -800) {
+    document.getElementById("scrollBottomBtn").style.display = "none";
+  } else {
+    document.getElementById("scrollBottomBtn").style.display = "block";
+  }
+
+
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     document.getElementById("scrollTopBtn").style.display = "block";
-        document.getElementById("scrollBottomBtn").style.display = "none";
   } else {
     document.getElementById("scrollTopBtn").style.display = "none";
- document.getElementById("scrollBottomBtn").style.display = "block";
   }
 }
 
